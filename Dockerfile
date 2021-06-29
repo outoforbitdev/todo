@@ -4,4 +4,4 @@
   WORKDIR /App
 # ENTRYPOINT [ "dotnet", "ToDo.dll" ]
 # Use the following instead for Heroku
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet HerokuApp.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet ToDo.dll
