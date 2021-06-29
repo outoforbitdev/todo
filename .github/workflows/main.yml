@@ -11,32 +11,15 @@ jobs:
   
   steps:
   - uses: actions/checkout@v1
-  - name: Build and deploy the Docker image
+  - name: Build and deploy main
+  - if: github.ref == 'refs/heads/main'
     env:
      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
      APP_NAME: ${{ 'oodtodo' }}
-    run: |
-     dotnet build -c Release
-     docker build . -t $APP_NAME 
-     docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-     heroku container:push web -a $APP_NAME
-     heroku container:release web -a $APP_NAME
-
-on:
- push:
-  branches:
-  - development
- 
-jobs:
- build:
-  runs-on: ubuntu-latest
-  
-  steps:
-  - uses: actions/checkout@v1
-  - name: Build and deploy the Docker image
+  - if: github.ref == 'refs/heads/development'
     env:
      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-     APP_NAME: ${{ 'oodtodo-dev' }}
+     APP_NAME: ${{ 'oodtodo-devs' }}
     run: |
      dotnet build -c Release
      docker build . -t $APP_NAME 
