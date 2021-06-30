@@ -7,7 +7,7 @@ namespace ToDo.Model
 {
     public class ToDoList: Entity
     {
-        public ToDoList(string name, string environment)
+        public ToDoList(string name, string environment): this()
         {
             Name = name;
             Environment = environment;
